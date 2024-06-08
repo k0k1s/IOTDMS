@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../redux/slices/authSlice';
-import './Login.css'; // Import the CSS file
-import loginImage from '../assets/login-image.jpg'; // Replace with your image path
+import { Link, useHistory } from 'react-router-dom';
+import './Login.css';
+import loginImage from '../assets/login-image.jpg';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const auth = useSelector((state) => state.auth);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(login({ username, password }));
+        if (auth.isAuthenticated) {
+            history.push('/dashboard');
+        }
     };
 
     return (
@@ -36,7 +41,7 @@ const Login = () => {
                     <a href="/">Forgot password?</a>
                 </div>
                 <div className="register-link">
-                    <p>Don't have an account? <a href="/">Register here</a></p>
+                    <p>Don't have an account? <Link to="/register">Register here</Link></p>
                 </div>
                 {auth.error && <p>{auth.error}</p>}
             </div>

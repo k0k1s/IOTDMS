@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    padding: 2em;
+}
+
+form div {
+    margin-bottom: 1em;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.login-container, .register-container, .dashboard-container, .add-device-container, .device-details-container {
+    padding: 2em;
+}
+
+.login-form, .register-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.login-image img {
+    max-width: 100%;
+}

@@ -1,37 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchDevices } from '../redux/slices/deviceSlice';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import './Dashboard.css';
 
 const Dashboard = () => {
-    const dispatch = useDispatch();
-    const devices = useSelector((state) => state.devices.devices);
-    const deviceStatus = useSelector((state) => state.devices.status);
-
-    useEffect(() => {
-        dispatch(fetchDevices());
-    }, [dispatch]);
-
-    if (deviceStatus === 'loading') {
-        return <div>Loading...</div>;
-    }
-
     return (
-        <div>
+        <div className="dashboard-container">
             <h2>Dashboard</h2>
-            <Link to="/add-device">Add Device</Link>
-            <div>
-                {devices.length === 0 ? (
-                    <p>No devices found.</p>
-                ) : (
-                    <ul>
-                        {devices.map(device => (
-                            <li key={device.id}>
-                                <Link to={`/device/${device.id}`}>{device.name}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+            <div className="dashboard-links">
+                <Link to="/add-device">Add Device</Link>
+                <Link to="/device-details/1">View Device Details</Link>
             </div>
         </div>
     );

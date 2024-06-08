@@ -2,25 +2,28 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 const Device = sequelize.define('Device', {
-    id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        primaryKey: true
-    },
     name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+    },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     status: {
         type: DataTypes.STRING,
-        defaultValue: 'offline'
+        allowNull: false,
     },
-    ownerId: {
-        type: DataTypes.UUID,
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'Users', 
+            key: 'id'
+        },
         allowNull: false
-    }
+    },
 }, {
-    timestamps: true
+    timestamps: true,
 });
 
 module.exports = Device;
